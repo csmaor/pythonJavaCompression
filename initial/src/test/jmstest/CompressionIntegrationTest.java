@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest(classes = {Application.class, Receiver.class, Sender.class, EventsListener.class})
 @EnableJms
 @Component
-public class UT {
+public class CompressionIntegrationTest {
 
     @Autowired
     Sender sender;

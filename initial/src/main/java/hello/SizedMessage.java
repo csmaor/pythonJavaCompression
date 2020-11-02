@@ -1,5 +1,7 @@
 package hello;
 
+import java.util.Objects;
+
 public class SizedMessage {
 
     private String body;
@@ -37,4 +39,17 @@ public class SizedMessage {
         return String.format("message size in MB: %s", getSizeInMB());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SizedMessage that = (SizedMessage) o;
+        return sizeInMB == that.sizeInMB &&
+                body.equals(that.body);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(body, sizeInMB);
+    }
 }

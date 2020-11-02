@@ -39,7 +39,7 @@ public class Application implements ApplicationListener<MessageReceivedEvent> {
     public MessageConverter jacksonJmsMessageConverter() {
 //        MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
 //        converter.setTargetType(MessageType.TEXT);
-//        converter.setTypeIdPropertyName("_type");
+ //       converter.setTypeIdPropertyName("_type");
         CompressedJsonMessageConverter converter = new CompressedJsonMessageConverter();
         return converter;
     }

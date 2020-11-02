@@ -10,6 +10,7 @@ import java.util.zip.GZIPOutputStream;
 
 public class GzipJsonCompressor {
 
+    private static boolean writeMessageToFile = false;
     private ObjectMapper objectMapper ;
 
     public GzipJsonCompressor() {
@@ -24,6 +25,9 @@ public class GzipJsonCompressor {
             //byte[] messageBytes = mapper.writeValueAsBytes(o);
             gzip = new GZIPOutputStream(new Base64OutputStream(out));
             String messageJson = objectMapper.writeValueAsString(objectToCompress);
+            if (writeMessageToFile)
+                WriteToFile(messageJson);
+
             byte[] bytesToCompress = messageJson.getBytes("UTF-8");
 
             //temp decompression
@@ -40,6 +44,30 @@ public class GzipJsonCompressor {
         } catch (IOException e) { e.printStackTrace(); }
 
         return null;
+    }
+
+    private void WriteToFile(String data){
+        File file = new File("sizedMessage.txt");
+
+        try {
+            if (file.createNewFile())
+                System.out.println("File created: " + file.getName());
+            else
+                System.out.println("File already exists.");
+
+            FileOutputStream fos = new FileOutputStream(file);
+            BufferedOutputStream bos = new BufferedOutputStream(fos);
+
+            //convert string to byte array
+            byte[] bytes = data.getBytes();
+            //write byte array to file
+            bos.write(bytes);
+            bos.close();
+            fos.close();
+            System.out.print("Data written to file successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public <T>T gzipDecompress(byte[] compressedBytes, Class<T> classToReturn) {

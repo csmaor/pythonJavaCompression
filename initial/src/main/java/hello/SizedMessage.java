@@ -16,10 +16,12 @@ public class SizedMessage {
 
         this.sizeInMB = bodySizeInMB;
         int sizeInBytes = (bodySizeInMB*1000*1000);
-        int numOfCharsNeeded = sizeInBytes/2;
+        int numOfCharsNeeded = sizeInBytes;
+        String strToAppend = "abcdefghijklmnopqrstuvwxyz:{}[]!@#$%^&*()-_+=~`;";
+        int numOfAppendNeeded = numOfCharsNeeded / strToAppend.length();
         StringBuilder strBuilder = new StringBuilder();
-        for (int i = 0; i < numOfCharsNeeded; i++) {
-            strBuilder.append('a');
+        for (int i = 0; i < numOfAppendNeeded; i++) {
+            strBuilder.append(strToAppend);
         }
 
         this.body = strBuilder.toString();

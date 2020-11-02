@@ -58,7 +58,7 @@ public class CompressionIntegrationTest {
     @Test
     public void TestSendingLargeMessage() {
 
-        SizedMessage message = new SizedMessage(50);
+        SizedMessage message = new SizedMessage(80);
         stopwatch = Stopwatch.createStarted();
         sender.SendMessage(message);
         WaitForResetEvent();

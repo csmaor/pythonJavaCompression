@@ -39,7 +39,7 @@ public class Application implements ApplicationListener<MessageReceivedEvent> {
     public MessageConverter jacksonJmsMessageConverter() {
 //        MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
 //        converter.setTargetType(MessageType.TEXT);
- //       converter.setTypeIdPropertyName("_type");
+//        converter.setTypeIdPropertyName("_type");
         CompressedJsonMessageConverter converter = new CompressedJsonMessageConverter();
         return converter;
     }
@@ -52,7 +52,7 @@ public class Application implements ApplicationListener<MessageReceivedEvent> {
 
         // Send a message with a POJO - the template reuse the message converter
         Sender sender = context.getBean(Sender.class);
-        SizedMessage message = new SizedMessage(1);
+        SizedMessage message = new SizedMessage(80);
         sender.SendMessage(message);
     }
 
